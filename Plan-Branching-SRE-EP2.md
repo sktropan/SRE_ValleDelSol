@@ -157,15 +157,16 @@
 
 <img src="image_d000c2.png" alt="Duoc UC" class="logo-duoc" />
 
-<h1>Plan de Branching — SRE Valle del Sol (EP2)</h1>
-<h2>Sistema de Respuesta de Emergencias — Evaluación Parcial 2</h2>
+<h1>Plan de Branching — SRE Valle del Sol (EP2 / EP3)</h1>
+<h2>Sistema de Respuesta de Emergencias — Evaluaciones Parciales 2 y 3</h2>
 <h3>DSY1106 Desarrollo Fullstack III</h3>
 
 <div class="metadatos">
   <p><strong>Proyecto:</strong> SRE-ValleDeSol (monorepo)</p>
   <p><strong>Integrantes:</strong> Skarlett Tropan, Ari Araya</p>
-  <p><strong>Fecha:</strong> 4 de junio de 2026</p>
-  <p><strong>Repositorio:</strong> https://github.com/KhanIvall/SRE-ValleDeSol</p>
+  <p><strong>Fecha:</strong> 18 de junio de 2026</p>
+  <p><strong>Repositorio principal:</strong> https://github.com/sktropan/SRE_ValleDelSol</p>
+  <p><strong>Rama de entrega EP3:</strong> feature/ep3-cobertura-tests → develop → main</p>
 </div>
 
 </div>
@@ -211,11 +212,13 @@ Todos los integrantes trabajan sobre el mismo repositorio remoto en GitHub, coor
 
 ### 1.3 Criterios de la rúbrica atendidos
 
-| Indicador | Cómo responde este plan |
-|-----------|-------------------------|
-| Encargo — branching claro y documentado (5%) | Modelo de ramas, convenciones y políticas explícitas |
-| Defensa oral — estrategia y colaboración (15%) | Flujo por integrante, ejemplos de PR y conflictos |
-| Defensa oral — gestión de conflictos | Procedimiento en §7 y caso documentado en §8 |
+| Evaluación | Indicador | Cómo responde este plan |
+|------------|-----------|-------------------------|
+| EP2 | Encargo — branching claro y documentado (5%) | Modelo de ramas, convenciones y políticas explícitas |
+| EP2 | Defensa oral — estrategia y colaboración (15%) | Flujo por integrante, ejemplos de PR y conflictos |
+| EP2/EP3 | Defensa oral — gestión de conflictos | Procedimiento en §7 y caso documentado en §8 |
+| EP3 | Encargo — buenas prácticas + pruebas (5%) | GitFlow con feature branches para tests, JaCoCo |
+| EP3 | Defensa oral — cobertura de código (15%) | Evidencia de `mvn test` con JaCoCo por rama EP3 |
 
 ---
 
@@ -262,9 +265,21 @@ No se utiliza GitHub Flow estricto (solo `main` + features) porque la evaluació
 
 | Prefijo | Uso | Ejemplo real en el proyecto |
 |---------|-----|----------------------------|
-| `feature/` | Nueva funcionalidad, módulo o documentación EP2 | `feature/ep2-arquetipos-maven` |
+| `feature/` | Nueva funcionalidad, módulo o documentación | `feature/ep2-arquetipos-maven`, `feature/ep3-cobertura-tests` |
 | `fix/` | Corrección de defecto sobre `develop` | `fix/ep2-bff-timeout` |
 | `docs/` | Solo documentación (opcional si no va en feature) | `docs/ep2-plan-branching` |
+
+### 3.3 Ramas de entrega por evaluación
+
+| Evaluación | Rama de trabajo | Integra en | Estado |
+|------------|-----------------|------------|--------|
+| EP2 | `feature/ep2-arquetipos-maven` | `develop` | Integrada (PR #2) |
+| EP2 | `feature/ep2-readmes-tests` | `develop` | Integrada (PR #3) |
+| EP2 | `feature/ep2-bff-frontend-integration` | `develop` | Integrada (PR #7) |
+| EP2 | `feature/ep2-readmes-docs` | `develop` | Integrada (PR #8) |
+| EP2 | `feature/fix` | `develop` | Integrada (PR #10) |
+| EP3 | `feature/tests-parcial3` | `develop` | Integrada (merge local) |
+| EP3 | `feature/ep3-cobertura-tests` | `develop` → `main` | **Activa** (rama actual) |
 
 **Reglas:**
 
@@ -272,7 +287,7 @@ No se utiliza GitHub Flow estricto (solo `main` + features) porque la evaluació
 - Vida máxima recomendada: **3–5 días** o un sprint corto; luego merge o rebase y cierre.
 - No trabajar directamente en `main` ni `develop` (salvo hotfix acordado por el equipo).
 
-### 3.3 Convención de nombres
+### 3.4 Convención de nombres
 
 ```
 <tipo>/<alcance>-<descripcion-corta>
@@ -370,7 +385,7 @@ Ambos revisan el PR del otro antes del squash a `develop`. Los hitos iniciales (
 
 ### 5.3 Alcances (`alcance`) recomendados
 
-`ep2`, `incidentes`, `recursos`, `zonasriesgo`, `bff`, `gateway`, `sre-ui`, `archetypes`, `develop`, `docs`
+`ep2`, `ep3`, `incidentes`, `recursos`, `zonasriesgo`, `bff`, `gateway`, `sre-ui`, `archetypes`, `develop`, `docs`
 
 ### 5.4 Reglas de calidad
 
@@ -612,23 +627,31 @@ Cuando dos features tocan el **mismo archivo de configuración raíz**, el autor
 
 ## 8. Evidencia en el repositorio
 
-### 8.1 Ramas remotas registradas (EP2)
+### 8.1 Ramas remotas registradas (EP2 + EP3)
 
-| Rama | Estado |
-|------|--------|
-| `main` | Estable, releases académicos |
-| `develop` | Integración EP2 |
-| `feature/ep2-arquetipos-maven` | Integrada vía PR #2 |
-| `feature/ep2-readmes-tests` | Integrada vía PR #3 |
+| Rama | Evaluación | Estado |
+|------|------------|--------|
+| `main` | EP2/EP3 | Estable, releases académicos |
+| `develop` | EP2/EP3 | Integración continua — rama central |
+| `feature/ep2-arquetipos-maven` | EP2 | Integrada vía PR #2 |
+| `feature/ep2-readmes-tests` | EP2 | Integrada vía PR #3 |
+| `feature/ep2-bff-frontend-integration` | EP2 | Integrada vía PR #7 |
+| `feature/ep2-readmes-docs` | EP2 | Integrada vía PR #8 |
+| `feature/fix` | EP2 | Integrada vía PR #10 |
+| `feature/tests-parcial3` | EP3 | Integrada en `develop` (merge --no-ff) |
+| `feature/ep3-cobertura-tests` | EP3 | **Activa** — trabajo actual EP3 |
 
 ### 8.2 Pull Requests y merges documentados
 
 | PR | Autor principal | Revisor | Merge | Descripción |
 |----|-----------------|---------|-------|-------------|
-| #1 | Equipo (pair) | — | `develop` → `main` (inicio integración) | Baseline multi-módulo |
+| #1 | Equipo (pair) | — | `develop` → `main` | Baseline multi-módulo |
 | #2 | Skarlett Tropan | Ari Araya | `feature/ep2-arquetipos-maven` → `develop` | Arquetipos Maven |
 | #3 | Ari Araya | Skarlett Tropan | `feature/ep2-readmes-tests` → `develop` | READMEs, tests; **conflicto en `pom.xml` resuelto** (§7.3) |
-| #4 | Skarlett Tropan | Ari Araya | `develop` → `main` | Cierre de integración EP2 en rama estable |
+| #4 | Skarlett Tropan | Ari Araya | `develop` → `main` | Cierre EP2 en rama estable |
+| #5–#10 | Equipo | Equipo | `feature/*` → `develop` → `main` | Fixes, BFF, frontend, docs EP2 |
+| EP3-M1 | Skarlett Tropan | — | `feature/tests-parcial3` → `develop` | Tests integración/E2E, JaCoCo, frontend bomberos |
+| EP3-M2 | Skarlett Tropan | — | `feature/ep3-cobertura-tests` → `develop` | **Pendiente** — mejoras cobertura EP3 |
 
 ### 8.3 Comandos para regenerar evidencia (defensa oral)
 
@@ -646,7 +669,7 @@ git shortlog -sn --all --no-merges
 git log --oneline --graph --all -25
 ```
 
-### 8.4 Diagrama de ramas — estado tras integración EP2
+### 8.4 Diagrama de ramas — estado EP2 + EP3
 
 ```mermaid
 gitGraph
@@ -654,8 +677,7 @@ gitGraph
     branch develop
     checkout develop
     commit id: "chore(develop): baseline multi-modulo"
-    commit id: "feat(ep2): incidentes y recursos"
-    commit id: "feat(ep2): zonasriesgo y BFF"
+    commit id: "feat(ep2): incidentes, recursos y BFF"
     branch feature/ep2-arquetipos-maven
     checkout feature/ep2-arquetipos-maven
     commit id: "feat(ep2): arquetipos Maven"
@@ -665,9 +687,25 @@ gitGraph
     checkout feature/ep2-readmes-tests
     commit id: "docs(ep2): READMEs y tests"
     checkout develop
-    merge feature/ep2-readmes-tests tag: "PR #3"
+    merge feature/ep2-readmes-tests tag: "PR #3 (conflicto pom.xml)"
     checkout main
-    merge develop tag: "PR #4"
+    merge develop tag: "PR #4 cierre EP2"
+    checkout develop
+    commit id: "fix(ep2): BFF, gitignore, docs"
+    checkout main
+    merge develop tag: "PR #11 cierre EP2 final"
+    checkout develop
+    branch feature/tests-parcial3
+    checkout feature/tests-parcial3
+    commit id: "feat(ep3): pruebas integracion E2E"
+    commit id: "feat(ep3): frontend bomberos y mapa"
+    commit id: "fix(ep3): Spring Boot 4 - parameters"
+    commit id: "chore(ep3): scripts inicio y datos"
+    checkout develop
+    merge feature/tests-parcial3 tag: "Merge EP3 M1"
+    branch feature/ep3-cobertura-tests
+    checkout feature/ep3-cobertura-tests
+    commit id: "EP3 activo — trabajo actual"
 ```
 
 ---
@@ -730,18 +768,21 @@ sequenceDiagram
 
 ### Antes de integrar a `main`
 
-- [ ] Todo el alcance EP2 mergeado en `develop`
-- [ ] `mvn test` y `npm test` exitosos en `develop`
-- [ ] Documentos EV2 referenciados en README
+- [ ] Todo el alcance del hito mergeado en `develop`
+- [ ] `mvn test` exitoso en los 3 módulos (42 tests, 0 fallos)
+- [ ] JaCoCo generado en `target/site/jacoco/index.html`
+- [ ] Documentos EP2/EP3 referenciados en README
 - [ ] PR `develop` → `main` con descripción del hito
 
-### Para la entrega Blackboard
+### Para la entrega EP3 — Blackboard
 
 - [ ] Exportar este documento a **PDF** (`Plan-Branching-SRE-EP2.pdf`)
-- [ ] Incluir capturas de PR #2, #3, #4 y del conflicto `pom.xml` resuelto (§7.3)
-- [ ] Actualizar `repositorios.txt` con enlace al monorepo
+- [ ] Incluir capturas del historial Git (`git log --oneline --graph --all`)
+- [ ] Incluir captura de JaCoCo (reporte de cobertura)
+- [ ] Actualizar `repositorios.txt` con rama `feature/ep3-cobertura-tests`
+- [ ] PR `feature/ep3-cobertura-tests` → `develop` → `main` antes de entrega
 
-> **Estado del contenido:** redacción técnica y evidencia Git completas al 4 de junio de 2026. Pendiente únicamente la exportación a PDF y las capturas de pantalla de GitHub para el ZIP de Blackboard.
+> **Estado del contenido:** plan actualizado al 18 de junio de 2026 para incluir flujo GitFlow EP3. Rama activa: `feature/ep3-cobertura-tests`. Repositorio: https://github.com/sktropan/SRE_ValleDelSol
 
 ---
 
